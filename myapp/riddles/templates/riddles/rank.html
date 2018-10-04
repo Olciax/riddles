@@ -1,0 +1,30 @@
+
+
+
+    <div class="card">
+        <h5 class="card-header">Ranking</h5>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Użytkownik</th>
+                    <th scope="col">Imię</th>
+                    <th scope="col">Punkty</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for u in myuser %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td class="text-danger"><a href="{% url 'user-profile2' u.id %}"> {{ u.user.username }}</a></td>
+                        <td>{{ u.user.first_name }}</td>
+                        <td>{{ u.points }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+

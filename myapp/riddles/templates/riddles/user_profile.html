@@ -1,0 +1,55 @@
+{% extends 'riddles/base.html' %}
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+<div class="col-auto mr-auto">
+    <h2 id="info"> {{ user.username }}</h2></div>
+
+    <div class="col-auto">
+    <a href="{% url 'profile-update' %}">
+        <button type="button" class="btn btn-outline-dark ">Edytuj profil</button></a></div>
+    </div>
+
+
+
+
+
+<form>
+  <div class="">
+    <label class="col-sm-2 col-form-label">Imię:</label>
+    <div class="col-sm-10">
+         {% if user.first_name == '' %}
+         <input type="text" readonly class="form-control-plaintext text-secondary" value="Nie podano">
+        {% else %}
+        <input type="text" readonly class="form-control-plaintext" value="{{ user.first_name }}">
+        {% endif %}
+    </div>
+
+
+
+  <label class="col-sm-2 col-form-label">Email:</label>
+    <div class="col-sm-10">
+        {% if user.email == '' %}
+        <input type="text" readonly class="form-control-plaintext font-italic text-secondary" value="Nie podano">
+        {% else %}
+        <input type="text" readonly class="form-control-plaintext font-italic" value="{{ user.email }}">
+        {% endif %}
+    </div>
+
+      <label class="col-sm-2 col-form-label">Punkty:</label>
+    <div class="col-sm-10">
+
+        <input type="text" readonly class="form-control-plaintext font-italic" value="{{ user.myuser.points }}">
+
+
+    </div>
+  </div>
+</form>
+
+</div>
+
+
+
+{% endblock %}

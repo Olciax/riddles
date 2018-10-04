@@ -1,0 +1,11 @@
+{% extends 'riddles/base.html' %}
+{% block content %}
+<ul>
+
+    {% for riddle in riddles %}
+        <li><a href="{% url 'riddle-form' riddle.id %}">{{ riddle }}</a></li>
+
+    {% endfor %}
+    {{ riddles.pk }}
+</ul>
+{% endblock %}

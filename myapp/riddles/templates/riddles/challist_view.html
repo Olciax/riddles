@@ -1,0 +1,80 @@
+{% extends 'riddles/base.html' %}
+
+{% block content %}
+
+
+
+
+
+    <p>
+
+        <button class="btn btn-outline-dark btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Uzupełnij profil
+            {% if mu.editname == True and mu.editimg == True and mu.editmail == True %}
+                3/3
+            {% elif mu.editname == True and mu.editimg == True and mu.editmail == False %}
+                2/3
+            {% elif mu.editname == True and  mu.editimg == False and mu.editmail == False %}
+                1/3
+            {% elif mu.editname == True and  mu.editimg == False and mu.editmail == True %}
+                2/3
+            {% elif mu.editname == False and mu.editimg == False and mu.editmail == True %}
+                1/3
+            {% elif mu.editname == False and  mu.editimg == True and mu.editmail == True %}
+                2/3
+            {% elif mu.editname == False and mu.editimg == False and mu.editmail == True %}
+                1/3
+            {% elif mu.editname == False and  mu.editimg == True and mu.editmail == False %}
+                1/3
+
+            {% else %}
+                0/3
+            {% endif %}
+        </button>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <ul>
+
+                <li>
+                    {% if mu.editname == True %}
+                        <i class="fas fa-check" style="color:green"></i>
+                        Dodaj imię <i>2&nbsp;<i class="fas fa-coins" style="color:gold"></i></i></li>
+                    {% else %}
+                        <i class="fas fa-times" style="color:tomato"></i>
+                        Dodaj imię<i>+2&nbsp;<i class="fas fa-coins"></i></i></li>
+                    {% endif  %}
+
+                <li>
+                    {% if mu.editmail == True %}
+                        <i class="fas fa-check" style="color:green"></i>
+                        Dodaj adres email <i>2&nbsp;<i class="fas fa-coins" style="color:gold"></i></i></li>
+                    {% else %}
+                        <i class="fas fa-times" style="color:tomato"></i>
+                        Dodaj adres email<i>+2&nbsp;<i class="fas fa-coins"></i></i>
+                    {% endif  %}
+                <li>
+                    {% if mu.editimg == True %}
+                        <i class="fas fa-check" style="color:green"></i>
+                        Dodaj zdjecie<i>2&nbsp;<i class="fas fa-coins" style="color:gold"></i></i></li>
+                    {% else %}
+                        <i class="fas fa-times" style="color:tomato"></i>
+                        Dodaj zdjęcie <i>+2&nbsp;<i class="fas fa-coins"></i></i></li>
+
+                    {% endif  %}
+
+
+            </ul>
+        </div>
+    </div>
+
+    <button class="btn btn-outline-dark btn-lg" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+        Odblokuj level 2 </button>
+     <div class="collapse" id="collapseExample2">
+        {% if d.riddles.pk in solved %}
+         {% endif %}
+        <div class="card card-body">
+        </div>
+     </div>
+
+{% endblock %}
