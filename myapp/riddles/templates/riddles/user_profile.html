@@ -17,31 +17,28 @@
 
 
 <form>
-  <div class="">
-    <label class="col-sm-2 col-form-label">Imię:</label>
-    <div class="col-sm-10">
+  <div class="" style="color:grey; text-align:center; ">
+    <label >Imię:</label>
+
          {% if user.first_name == '' %}
-         <input type="text" readonly class="form-control-plaintext text-secondary" value="Nie podano">
+             <p>Nie podano</p>
         {% else %}
-        <input type="text" readonly class="form-control-plaintext" value="{{ user.first_name }}">
+             <p>{{ user.first_name }}</p>
         {% endif %}
-    </div>
 
 
 
-  <label class="col-sm-2 col-form-label">Email:</label>
-    <div class="col-sm-10">
+
+  <label>Email:</label>
+
         {% if user.email == '' %}
-        <input type="text" readonly class="form-control-plaintext font-italic text-secondary" value="Nie podano">
+            <p>Nie podano</p>
         {% else %}
-        <input type="text" readonly class="form-control-plaintext font-italic" value="{{ user.email }}">
+            <p>{{ user.email }}</p>
         {% endif %}
-    </div>
 
-      <label class="col-sm-2 col-form-label">Punkty:</label>
-    <div class="col-sm-10">
-
-        <input type="text" readonly class="form-control-plaintext font-italic" value="{{ user.myuser.points }}">
+    <label>Punkty:</label>
+      <p>{{ user.myuser.points }}  <i class="fas fa-coins" style="color:gold"></i></p>
 
 
     </div>

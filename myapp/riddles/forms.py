@@ -6,7 +6,6 @@ from .models import MyUser
 
 class MyUserUpdateForm(forms.ModelForm):
 
-    img = forms.ImageField(required=False)
     class Meta:
         model = User
         fields = ['first_name','email']

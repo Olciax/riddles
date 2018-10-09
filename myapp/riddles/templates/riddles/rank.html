@@ -17,7 +17,7 @@
                 {% for u in myuser %}
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
-                        <td class="text-danger"><a href="{% url 'user-profile2' u.id %}"> {{ u.user.username }}</a></td>
+                        <td class="text-danger"><a href="{% url 'user-profile2' u.user.id %}"> {{ u.user.username }}</a></td>
                         <td>{{ u.user.first_name }}</td>
                         <td>{{ u.points }}</td>
                     </tr>
@@ -25,6 +25,6 @@
                 </tbody>
             </table>
         </div>
-    </div>
+        </div>
 
 

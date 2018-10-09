@@ -129,7 +129,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-LOGIN_REDIRECT_URL = '/homepage'
+LOGIN_REDIRECT_URL = '/riddles/homepage'
 
-LOGOUT_REDIRECT_URL = '/homepage'
+LOGOUT_REDIRECT_URL = '/riddles/homepage'
 

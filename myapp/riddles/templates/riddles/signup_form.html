@@ -8,10 +8,7 @@
       <p>
         {{ field.label_tag }}<br>
         {{ field }}
-        {% if field.help_text %}
 
-          <small id="passwordHelpBlock" style="color: grey" class="form-text text-muted">{{ field.help_text }}</small>
-        {% endif %}
         {% for error in field.errors %}
           <p style="color: red">{{ error }}</p>
         {% endfor %}

@@ -21,6 +21,8 @@ from django.urls import path
 from riddles.views import SignUp, RiddleFormView, RiddlesListView, MyUserUpdate2, LevelsListView, ChallistView, \
     CuriosityView, Ranking, HomePageView
 
+from riddles.views import points
+
 urlpatterns = [
     #admin
     path('admin/', admin.site.urls),
@@ -28,33 +30,35 @@ urlpatterns = [
 
 
     #lista z zagadkami
-    url(r'^$', RiddlesListView.as_view(), name="index"),
+    url(r'^riddles/$', HomePageView.as_view(), name="index"),
 
     #podląg zagadki
     # url(r'^riddle/(?P<pk>[0-9]+)/$', RiddleView, name='riddle'),
 
     #tworzenie zagadki, raczej do wywalenia
-    url(r'^riddles_form/(?P<pk>[0-9]+)/$', RiddleFormView.as_view(), name="riddle-form"),
+    url(r'^riddles/riddles_form/(?P<pk>[0-9]+)/$', RiddleFormView.as_view(), name="riddle-form"),
 
     #rejestracja
-    url(r'^signup/$', SignUp, name='signup'),
+    url(r'^riddles/signup/$', SignUp, name='signup'),
 
     #profil użytkownika
-    path('profile/', views.userDetails, name="user-profile"),
+    path('riddles/profile/', views.userDetails, name="user-profile"),
 
-    url(r'^profile/(?P<id>[0-9]+)/$', views.userDetails2, name="user-profile2"),
+    url(r'^riddles/profile/(?P<id>[0-9]+)/$', views.userDetails2, name="user-profile2"),
 
     #update użytkownika
-    url(r'profile/edit', MyUserUpdate2.as_view(), name='profile-update'),
+    url(r'riddles/profile/edit', MyUserUpdate2.as_view(), name='profile-update'),
 
-    url(r'^list/$', LevelsListView.as_view(), name='levellist'),
+    url(r'^riddles/list/$', LevelsListView.as_view(), name='levellist'),
 
-    url(r'^chall/$', ChallistView.as_view(), name='challist'),
+    url(r'^riddles/progress/$', ChallistView.as_view(), name='challist'),
 
-    url(r'^costam/$', CuriosityView.as_view(), name='costam'),
+    url(r'^riddles/costam/$', CuriosityView.as_view(), name='costam'),
 
-    url(r'^rank/$', Ranking.as_view(), name='rank'),
+    url(r'^riddles/rank/$', Ranking.as_view(), name='rank'),
 
-    url(r'^homepage/$', HomePageView.as_view(), name='homepage')
+    url(r'^riddles/homepage/$', HomePageView.as_view(), name='homepage'),
+
+    url(r'^riddles/points/$', points, name="points")
 
     ]

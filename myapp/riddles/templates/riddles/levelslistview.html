@@ -11,7 +11,14 @@
   <div class="card card-body">
 
       {% for riddle in level1.riddles.all %}
-          <li> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+
+          {% if riddle not in solved_riddles %}
+          <li style="color:red"> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+              {% else %}
+                        <li style="color:green"> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+
+          {% endif %}
+
       {% endfor %}
 
   </div>
@@ -32,13 +39,44 @@
 <div class="collapse" id="collapseExample2">
   <div class="card card-body">
 
-      {% for riddle in level2.riddles.all %}
-          <li> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+       {% for riddle in level2.riddles.all %}
+
+          {% if riddle not in solved_riddles %}
+          <li style="color:red"> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+              {% else %}
+                        <li style="color:green"> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+
+          {% endif %}
+
       {% endfor %}
 
   </div>
 </div>
 
+<p>
+{% if solved >= 10 %}
+
+  <button class="btn btn-danger btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+        {{ level3 }}
+  </button>
+{% else %}
+  <button disabled class="btn btn-danger btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+       <i> ## {{ level3 }} zablokowany ## </i>
+  </button>
+{% endif %}
+</p>
+    <div class="collapse" id="collapseExample3">
+  <div class="card card-body">
+ {% for riddle in level3.riddles.all %}
+
+          {% if riddle not in solved_riddles %}
+          <li style="color:red"> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+              {% else %}
+                        <li style="color:green"> <a href="{% url 'riddle-form' riddle.id %}">{{ riddle }} </a></li>
+
+          {% endif %}
+
+      {% endfor %}
 
 
 

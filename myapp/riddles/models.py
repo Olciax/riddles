@@ -26,7 +26,7 @@ class Level(models.Model):
 
 class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    points = models.SmallIntegerField()
+    points = models.SmallIntegerField(default=5)
     img = models.ImageField(blank=True, null=True, upload_to="Pulpit/costam")
     editname = models.BooleanField(default=False)
     editmail = models.BooleanField(default=False)

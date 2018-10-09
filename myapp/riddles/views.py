@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
@@ -59,10 +60,12 @@ class RiddleFormView(View):
             else:
                 z.points += riddle.points
                 z.save()
+                messages.add_message(self.request, messages.SUCCESS,
+                                     "Super, oby tak dalej! +2 pkt ")
                 DoneRiddles.objects.create(riddles=riddle, my_user=z)
 
 
-                return redirect(reverse('index'))
+                return redirect(reverse('riddle-form', kwargs={'pk': riddle.pk}))
         else:
             return render(request, 'riddles/riddles_form.html', {"form": form, "riddle": riddle, "done": done})
 
@@ -82,7 +85,7 @@ def SignUp(request):
             user.set_password(password1)
             user.save()
 
-            MyUser.objects.create(user=user, points=0)
+            MyUser.objects.create(user=user, points=20)
 
             user = authenticate(username=username, password=password1)
             # if user is not None:
@@ -125,27 +128,25 @@ class MyUserUpdate2(View):
             first_name = form.cleaned_data['first_name']
             # last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
+
             form.save()
             if first_name is not None and not mu.editname:
-                mu.points += 1
+                mu.points += 2
                 mu.editname = True
                 mu.save()
+                return redirect(reverse('user-profile'))
             if email is not None and not mu.editmail:
-                mu.points += 1
+                mu.points += 2
                 mu.editmail = True
                 mu.save()
-
-
+                return redirect(reverse('user-profile'))
             else:
-                form.save()
-                img = form.cleaned_data['img']
-                if img is not None:
-                    mu.points += 1
-                    mu.editing = True
-                else:
-                    mu.img = img
-                    mu.save()
-            return redirect(reverse('user-profile'))
+                return redirect(reverse('user-profile'))
+
+
+
+
+
         else:
             return render(request, 'riddles/user-form.html', {"form": form})
 
@@ -157,27 +158,30 @@ class LevelsListView(View):
 
         level1 = Level.objects.get(pk=1)
         level2 = Level.objects.get(pk=2)
+        level3 = Level.objects.get(pk=3)
         mu = MyUser.objects.get(user=request.user)
         done = DoneRiddles.objects.filter(my_user=mu)
         myuser = MyUser.objects.all()
 
-        l = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        l = [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
         solved = 0
         for d in done:
             if d.riddles.pk in l:
                 solved += 1
 
-
+        solved_riddles = [s.riddles for s in done]
 
 
         ctx = {
-               "level1": level1,
-                "level2": level2,
-                "mu":mu,
-                "done":done,
-                "solved":solved,
-                "myuser":myuser
-               }
+            "level1": level1,
+            "level2": level2,
+            "level3": level3,
+            "mu":mu,
+            "done":done,
+            "solved":solved,
+            "myuser":myuser,
+            'solved_riddles': solved_riddles,
+        }
         return render(request, 'riddles/levelslistview.html', ctx)
 
 class ChallistView(View):
@@ -202,7 +206,7 @@ class ChallistView(View):
 
 class CuriosityView(View):
     def get(self, request):
-        a = random.randint(1,5)
+
         done = Curiosity.objects.get(pk=1)
 
         ctx = { "done": done}
@@ -216,14 +220,15 @@ class Ranking(View):
         myuser = MyUser.objects.all().order_by('-points')
 
         ctx ={
-              'myuser': myuser}
+            'myuser': myuser}
 
         return render(request, 'riddles/rank.html', ctx)
 
 class HomePageView(View):
     def get(self,request):
         myuser = MyUser.objects.all().order_by('-points')
-        a = random.randint(1, 5)
+
+        a = random.randint(1, 18)
         done = Curiosity.objects.get(pk=a)
         ctx = {
             "myuser":myuser,
@@ -231,6 +236,15 @@ class HomePageView(View):
         }
 
         return render(request, 'riddles/homepage.html', ctx)
+
+
+def points(request):
+    myuser = MyUser.objects.get(user=request.user)
+    myuser.points -= 2
+    myuser.save()
+    return HttpResponse(str(myuser.points))
+
+
 
 
 
