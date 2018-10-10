@@ -1,5 +1,6 @@
 body {
     background: black !important;
+    overflow-y: hidden;
 
 }
 
@@ -15,14 +16,15 @@ body {
 .main2 {
     height: 100%;
     width: 100%;
-    background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url("../images/background2.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    /*background-image: linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), url("../images/background2.jpg");*/
+    /*background-size: cover;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center center;*/
+    background-color: black;
 }
 
 .content {
-        margin: 0 auto;
+    margin: 0 auto;
     width: 800px;
     color: dimgrey !important;
     height: 100%;
@@ -34,4 +36,51 @@ body {
 
 .asteriskField {
     display: none;
+}
+
+#signup {
+    margin: 0 auto;
+
+}
+
+.page-container {
+    margin: 0 auto;
+    padding-right: 10px;
+    padding-left: 10px;
+
+}
+
+.left-side,
+.right-side {
+    width: 50%;
+    padding: 10px;
+    float: left
+
+}
+
+.brand {
+    min-height: 40vh;
+    margin-top: 40vh;
+    color: #fff;
+    text-align: left;
+}
+
+.wall {
+    overflow-y: visible;
+    height: calc(85vh);
+    margin: 0 auto;
+    width: 100%;
+    padding: 15px;
+    background-color: #fff!important;
+    color: #000 !important;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.section {
+    margin: auto;
+    width: auto;
+    height: auto;
+    text-align: center;
+
 }

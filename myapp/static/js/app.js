@@ -13,6 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
+        if($('#checkreg').prop("checked")==false){
+                alert("Blabla")
+            }
+
+        })
+
     });
+
+
 
 });

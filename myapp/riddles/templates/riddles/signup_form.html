@@ -2,30 +2,54 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="POST">
+<div class="page-container">
+    <div class="left-side animated fadeInLeftBig">
+        <div class="brand" style="text-align:center">
 
+        <h1>Zarejestruj się</h1>
+        <span class="text-secondary" style="font-size:15px"> Rejestrując się, akceptujesz
+                <a href="#" class="text-secondary">regulamin</a>.</span>
+
+
+        <hr>
+            <h5><a class="text-secondary" href="{% url 'login' %}">Masz już konto?</a></h5>
+
+        </div>
+    </div>
+
+    <div class="right-side animated fadeInRight">
+        <div class="wall d-flex align-items-center justify-content-center" data-simplebar>
+            <div class="section mx-auto">
+    <form method="POST">
         {% csrf_token %}
 
-        <h2>Zaarejestruj się</h2>
-        <br/>
 
 
-        <span data-toggle="tooltip" title="Wymagane 150 lub mniej znaków. Login może składać się z liter, cyfr oraz
+        <span data-toggle="tooltip" data-placement="bottom" title="Wymagane 150 lub mniej znaków. Login może składać się z liter, cyfr oraz
                                            @/./+/-/_">{{ form.username|as_crispy_field }}</span>
-        <br/>
 
 
-        <span data-toggle="tooltip" title="Twoje hasło nie może być zbyt podobne do twojego loginu. Twoje hasło musi
+
+        <span data-toggle="tooltip" data-placement="bottom" title="Twoje hasło nie może być zbyt podobne do twojego loginu. Twoje hasło musi
                                            zawierać conajmniej 8 znaków, nie może być zbyt powszechne, nie moe składać się tylko z cyfr.">
             {{ form.password1|as_crispy_field }}</span>
-        <br/>
 
 
-        <span data-toggle="tooltip" title="Wprowadź hasło ponownie">{{ form.password2|as_crispy_field }}</span>
+
+        <span data-toggle="tooltip" data-placement="bottom" title="Wprowadź hasło ponownie">{{ form.password2|as_crispy_field }}</span>
+
+
+
         <br/>
-        <button class="btn btn-outline-secondary btn-lg" type="submit" value="Zarejestruj się">Dodaj</button>
+
+        <button class="btn btn-dark btn-lg btn-block" type="submit" value="Zarejestruj się"> Dalej  <i class="fas fa-angle-double-right"></i> </button>
+
+
 
 
     </form>
-
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
