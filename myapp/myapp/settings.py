@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'riddles',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -132,4 +133,6 @@ STATICFILES_DIRS = (
 LOGIN_REDIRECT_URL = '/riddles/homepage'
 
 LOGOUT_REDIRECT_URL = '/riddles/homepage'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

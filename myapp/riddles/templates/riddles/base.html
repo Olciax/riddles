@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css"
-          href="{% static "riddles/riddles.css" %}">
+          href="{% static "riddles/riddles2.css" %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -26,94 +26,17 @@
 </head>
 
 
-<body>
-<nav class="navbar navbar-light bg-light">
+<body class="text-center">
+<!-- Navigation -->
 
-
-    <ul class="navbar-nav mr-auto">
-       <a class="navbar-brand" href="{% url 'homepage' %}"> <button type="button" class="btn btn-light" >
-           {% if request.user.is_authenticated %}
-<i class="fas fa-lightbulb" style="color:gold"></i>
-{% else %}
-<i class="fas fa-lightbulb"></i>
-{% endif %} </button></a></ul>
-
-    <ul class="nav navbar-nav  text-muted">
-         <a href="{% url 'levellist' %}" class="text-muted">
-                <li>
-                    <button type="button" class="btn btn-light" >
-                        Zagadki </button></li></a></ul>
-
-    {% if request.user.is_authenticated %}
-
-        <ul class="nav navbar-nav">
-            <span class="navbar-text">&nbsp;&nbsp;&nbsp;Hej</span></ul>
-
-        <ul class="nav navbar-nav navbar-right text-muted   ">
-            <a href="{% url 'user-profile' %}" class="text-muted">
-                <li>
-                    <button type="button" class="btn btn-link text-muted" >
-                        {{ request.user }} !</button>
-                                                    </li></a></ul>
-
-        <ul class="nav navbar-nav">
-              <span class="navbar-text">Masz <span id="current_points">{{ request.user.myuser.points }}</span> <i class="fas fa-coins" style="color:gold"></i>&nbsp;&nbsp;&nbsp;</span></ul>
-
-
-
-        <ul class="nav navbar-nav navbar-right">
-            <a href="{% url 'logout' %}" class=" text-muted">
-                <li>
-<button type="button" class="btn btn-light" >
-                          <i class="fas fa-user">   </i> Wyloguj się
-</button> </li></a></ul>
-
-
-
-
-
-    {% else %}
-
-
-
-        <ul class="nav navbar-nav navbar-right">
-
-            <a href="{% url 'login' %}">
-                <li>
-
-                    <button type="button" class="btn btn-light" >
-                        <i class="fas fa-plus"></i><i class="fas fa-user"></i> Zaloguj się</button>
-                </li></a></ul>
-        <ul class="nav navbar-nav navbar-right">
-
-            <a href="{% url 'signup' %}">
-
-                <li>
-                    <button type="button" class="btn btn-light" >
-                        <i class="fas fa-plus"></i><i class="fas fa-user"></i> Zarejestruj się</button>
-                </li></a></ul>
-    {% endif %}
-
-</nav>
 
 <!-- Block content -->
-<div id="main">
-    <div id="content">
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-        {{ message }}
-        </li>
-    {% endfor %}
-    </ul>
-    {% endif %}
-
-        {% block content %}
-
+<div class="main">
+    <div class="main2">
+    <div class="content">
+    {% block content %}
         {% endblock %}
-
+</div>
     </div>
 </div>
 

@@ -1,19 +1,31 @@
 {% extends 'riddles/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-  <h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
+    <form method="POST">
 
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
+        {% csrf_token %}
+
+        <h2>Zaarejestruj się</h2>
+        <br/>
+
+
+        <span data-toggle="tooltip" title="Wymagane 150 lub mniej znaków. Login może składać się z liter, cyfr oraz
+                                           @/./+/-/_">{{ form.username|as_crispy_field }}</span>
+        <br/>
+
+
+        <span data-toggle="tooltip" title="Twoje hasło nie może być zbyt podobne do twojego loginu. Twoje hasło musi
+                                           zawierać conajmniej 8 znaków, nie może być zbyt powszechne, nie moe składać się tylko z cyfr.">
+            {{ form.password1|as_crispy_field }}</span>
+        <br/>
+
+
+        <span data-toggle="tooltip" title="Wprowadź hasło ponownie">{{ form.password2|as_crispy_field }}</span>
+        <br/>
+        <button class="btn btn-outline-secondary btn-lg" type="submit" value="Zarejestruj się">Dodaj</button>
+
+
+    </form>
+
 {% endblock %}

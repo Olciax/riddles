@@ -79,18 +79,13 @@ def SignUp(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-            user = form.save()
+
             username = form.cleaned_data.get('username')
             password1 = form.cleaned_data.get('password1')
-            user.set_password(password1)
-            user.save()
+            newuser = User.objects.create_user(username=username, password=password1)
+            MyUser.objects.create(user=newuser, points=20)
+            newuser = authenticate(username=username, password=password1)
 
-            MyUser.objects.create(user=user, points=20)
-
-            user = authenticate(username=username, password=password1)
-            # if user is not None:
-            #     if user.is_active():
-            login(request, user)
             return redirect('homepage')
 
         else:
@@ -105,6 +100,7 @@ def userDetails(request):
     #     'user' : user
     # }
     return render(request, 'riddles/user_profile.html')
+
 
 
 def userDetails2(request, id):
