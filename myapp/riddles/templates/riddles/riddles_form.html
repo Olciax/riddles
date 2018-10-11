@@ -1,60 +1,74 @@
 {% extends 'riddles/base.html' %}
 {% block content %}
 
+        <div class="page-container">
 
 
-    <label style="font-size:25px; text-align:center; padding:10px;  "> {{ riddle.text }} </label>
-    <br/>
-    <br/>
+            <div class="wall d-flex align-items-center justify-content-center" data-simplebar>
+
+                <div class="section mx-auto" >
+                    <label class="animated fadeIn"style="font-size:25px; text-align:center; padding:10px;  "> {{ riddle.text }} </label>
+                    <br/>
+                    <br/>
 
 
-    {% if done == True %}
+                    {% if done == True %}
 
-        <input class="form-control" disabled placeholder="{{ riddle.answer }}" style="text-align:center;text-transform:uppercase">
+                        <input class="form-control" disabled placeholder="{{ riddle.answer }}" style="text-align:center;text-transform:uppercase">
+                        <br/>
+                        <button onclick="goBack()" class="btn btn-outline-dark " type="submit" value="Powrót"> Powrót </button>
+                        <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                        </script>
+                    {% else %}
 
-    {% else %}
+                        <div class="d-flex justify-content-center">
+                            <form class="form-inline" method="post" action="#" >
 
-<div class="d-flex justify-content-center">
-        <form class="form-inline" method="post" action="#" >
+                                {% csrf_token %}
 
-            {% csrf_token %}
+                                {{ form.answer }} &nbsp;
 
-            {{ form.answer }}
+                                <button type="submit" class="btn btn-outline-dark" >Wyślij</button>
+                            </form>
+                            <!-- Button trigger modal -->
+                            {% if user.myuser.points <= 1 %}
+                                <a href="{% url 'challist' %}"><button  type="button" class="btn btn-dark"  > Zdobądź punkty</button></a>
+                            {% else %}
+                                &nbsp;
 
-            <button type="submit" class="btn btn-outline-dark" >Wyślij</button>
-        </form>
-            <!-- Button trigger modal -->
-            {% if user.myuser.points <= 1 %}
-                <a href="{% url 'challist' %}"><button  type="button" class="btn btn-dark"  > Zdobądź punkty</button></a>
-            {% else %}
-
-                <button id="hint_button" type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal"
-                data-button="{{ riddle.hint }}">
-                    Podpowiedź 2 <i class="fas fa-coins" style="color:gold"></i></button>
-            {% endif %}
-
+                                <button id="hint_button" type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal"
+                                        data-button="{{ riddle.hint }}">
+                                    Podpowiedź 2 <i class="fas fa-coins" style="color:gold"></i></button>
+                            {% endif %}
 
 
-            <!-- Modal -->
-            <div class="modal " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Podpowiedź</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal animated fadeInDown " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Podpowiedź</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ riddle.hint }}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="modal-body">
-                            {{ riddle.hint }}
-                        </div>
+                    {% endif %}
 
-                    </div>
                 </div>
             </div>
-
-        </form>
-</div>
-    {% endif %}
+        </div>
 
 {% endblock %}

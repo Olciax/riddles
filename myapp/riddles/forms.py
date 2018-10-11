@@ -8,6 +8,7 @@ from .models import MyUser
 
 class MyUserUpdateForm(forms.ModelForm):
 
+
     class Meta:
         model = User
         fields = ['first_name','email']

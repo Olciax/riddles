@@ -1,55 +1,107 @@
-{% extends 'riddles/base.html' %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block content %}
-<div class="page-container">
-    <div class="left-side animated fadeInLeftBig">
-        <div class="brand" style="text-align:center">
+<!DOCTYPE html>
 
-        <h1>Zarejestruj się</h1>
-        <span class="text-secondary" style="font-size:15px"> Rejestrując się, akceptujesz
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static "riddles/riddles2.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "riddles/riddles.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "riddles/animate.css" %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <!-- Js -->
+    <script src="{% static "js/app.js" %}"></script>
+
+
+    <meta charset="UTF-8">
+    <title>GuessMe</title>
+</head>
+
+<body id="page-top">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger text-light" href="{% url 'homepage' %}">Logo</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+    </div>
+</nav>
+
+<!-- Block content -->
+<div class="main">
+    <div class="main2">
+        <div class="content">
+            <div class="page-container">
+                <div class="left-side animated fadeInLeftBig">
+                    <div class="brand" style="text-align:center">
+
+                        <h1>Zarejestruj się</h1>
+                        <span class="text-secondary" style="font-size:15px"> Rejestrując się, akceptujesz
                 <a href="#" class="text-secondary">regulamin</a>.</span>
 
 
-        <hr>
-            <h5><a class="text-secondary" href="{% url 'login' %}">Masz już konto?</a></h5>
+                        <hr>
+                        <h5><a class="text-secondary" href="{% url 'login' %}">Masz już konto?</a></h5>
 
-        </div>
-    </div>
+                    </div>
+                </div>
 
-    <div class="right-side animated fadeInRight">
-        <div class="wall d-flex align-items-center justify-content-center" data-simplebar>
-            <div class="section mx-auto">
-    <form method="POST">
-        {% csrf_token %}
+                <div class="right-side animated fadeInRight">
+                    <div class="wall d-flex align-items-center justify-content-center" data-simplebar>
+                        <div class="section pagination-centered">
+                            <form method="POST">
+                                {% csrf_token %}
 
 
 
-        <span data-toggle="tooltip" data-placement="bottom" title="Wymagane 150 lub mniej znaków. Login może składać się z liter, cyfr oraz
+                                <span data-toggle="tooltip" data-placement="bottom" title="Wymagane 150 lub mniej znaków. Login może składać się z liter, cyfr oraz
                                            @/./+/-/_">{{ form.username|as_crispy_field }}</span>
 
 
 
-        <span data-toggle="tooltip" data-placement="bottom" title="Twoje hasło nie może być zbyt podobne do twojego loginu. Twoje hasło musi
+                                <span data-toggle="tooltip" data-placement="bottom" title="Twoje hasło nie może być zbyt podobne do twojego loginu. Twoje hasło musi
                                            zawierać conajmniej 8 znaków, nie może być zbyt powszechne, nie moe składać się tylko z cyfr.">
             {{ form.password1|as_crispy_field }}</span>
 
 
 
-        <span data-toggle="tooltip" data-placement="bottom" title="Wprowadź hasło ponownie">{{ form.password2|as_crispy_field }}</span>
+                                <span data-toggle="tooltip" data-placement="bottom" title="Wprowadź hasło ponownie">{{ form.password2|as_crispy_field }}</span>
 
 
 
-        <br/>
+                                <br/>
 
-        <button class="btn btn-dark btn-lg btn-block" type="submit" value="Zarejestruj się"> Dalej  <i class="fas fa-angle-double-right"></i> </button>
-
-
+                                <button class="btn btn-dark btn-lg btn-block" type="submit" value="Zarejestruj się"> Dalej  <i class="fas fa-angle-double-right"></i> </button>
 
 
-    </form>
+
+
+                            </form>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+
+</body>
+
+</html>
+
+

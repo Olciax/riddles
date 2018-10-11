@@ -81,10 +81,12 @@ def SignUp(request):
         if form.is_valid():
 
             username = form.cleaned_data.get('username')
-            password1 = form.cleaned_data.get('password1')
-            newuser = User.objects.create_user(username=username, password=password1)
-            MyUser.objects.create(user=newuser, points=20)
-            newuser = authenticate(username=username, password=password1)
+            password = form.cleaned_data.get('password1')
+            user = User.objects.create_user(username=username, password=password)
+            MyUser.objects.create(user=user, points=20)
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            user.save()
 
             return redirect('homepage')
 

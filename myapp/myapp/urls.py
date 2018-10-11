@@ -26,7 +26,7 @@ from riddles.views import points
 urlpatterns = [
     #admin
     path('admin/', admin.site.urls),
-    url(r'^accounts/', include('django.contrib.auth.urls'), name='login'),
+    url(r'^riddles/', include('django.contrib.auth.urls'), name='login'),
 
 
     #lista z zagadkami
@@ -59,6 +59,6 @@ urlpatterns = [
 
     url(r'^riddles/homepage/$', HomePageView.as_view(), name='homepage'),
 
-    url(r'^riddles/points/$', points, name="points")
+    url(r'^points/$', points, name="points")
 
     ]

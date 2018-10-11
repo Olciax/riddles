@@ -1,19 +1,30 @@
 {% extends 'riddles/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
+    <div class="animated fadeInUp">
+        <div class="page-container">
 
-<form method="post" action="#">
-<h2>Edytuj Profil</h2>
-<div class="form-group">
-        {% csrf_token %}
 
-        {% for field in form %}
-            {{ field.label_tag }}
-            {{ field }} </br>
-    {% endfor %}
+            <div class="wall d-flex align-items-center justify-content-center" data-simplebar>
 
-        <button type="sumbit" >Wyślij</button>
+                <div class="section mx-auto" >
+                    <form method="post" action="#">
+                        <h2>Edytuj Profil</h2>
+                        <div class="form-group">
+                            {% csrf_token %}
 
-</div>
+                            {{ form.first_name|as_crispy_field }}
+                            {{ form.email|as_crispy_field }}
+                        <br/>
 
-</form>
+                            <button type="sumbit"  class="btn btn-outline-dark btn-block" >Wyślij</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

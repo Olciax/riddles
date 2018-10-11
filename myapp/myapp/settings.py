@@ -132,7 +132,7 @@ STATICFILES_DIRS = (
 
 LOGIN_REDIRECT_URL = '/riddles/homepage'
 
-LOGOUT_REDIRECT_URL = '/riddles/homepage'
+LOGOUT_REDIRECT_URL = '/riddles/login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

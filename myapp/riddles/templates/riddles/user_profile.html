@@ -1,52 +1,54 @@
 {% extends 'riddles/base.html' %}
-{% block title %}{{ user.username }}{% endblock %}
-
 {% block content %}
+    <div class="animated fadeInUp">
+        <div class="page-container">
 
-<div class="row">
-<div class="col-auto mr-auto">
-    <h2 id="info"> {{ user.username }}</h2></div>
 
-    <div class="col-auto">
-    <a href="{% url 'profile-update' %}">
-        <button type="button" class="btn btn-outline-dark ">Edytuj profil</button></a></div>
+            <div class="wall d-flex align-items-center justify-content-center" data-simplebar>
+
+                <div class="section mx-auto" >
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <h2 id="info"> {{ user.username }}</h2></div>
+                    </div>
+
+
+
+                    <form>
+                        <br/>
+                        <label >Imię:</label>
+
+                        {% if user.first_name == '' %}
+                            Nie podano
+                        {% else %}
+                            {{ user.first_name }}
+                        {% endif %}
+
+                        <hr>
+
+
+                        <label>Email:</label>
+
+                        {% if user.email == '' %}
+                            Nie podano
+                        {% else %}
+                            {{ user.email }}
+                        {% endif %}
+                        <hr>
+                        <label>Punkty:</label>
+                        {{ user.myuser.points }}  <i class="fas fa-coins" style="color:gold"></i>
+
+                        <br/><br/>
+                    <a href="{% url 'profile-update' %}">
+                                <button type="button" class="btn btn-outline-dark btn-block">Edytuj profil</button></a>
+                    <br/>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
     </div>
-
-
-
-
-
-<form>
-  <div class="" style="color:grey; text-align:center; ">
-    <label >Imię:</label>
-
-         {% if user.first_name == '' %}
-             <p>Nie podano</p>
-        {% else %}
-             <p>{{ user.first_name }}</p>
-        {% endif %}
-
-
-
-
-  <label>Email:</label>
-
-        {% if user.email == '' %}
-            <p>Nie podano</p>
-        {% else %}
-            <p>{{ user.email }}</p>
-        {% endif %}
-
-    <label>Punkty:</label>
-      <p>{{ user.myuser.points }}  <i class="fas fa-coins" style="color:gold"></i></p>
-
-
     </div>
-  </div>
-</form>
-
-</div>
-
-
-
+    </div>
 {% endblock %}
