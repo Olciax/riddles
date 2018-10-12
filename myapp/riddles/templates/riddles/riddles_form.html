@@ -16,12 +16,12 @@
 
                         <input class="form-control" disabled placeholder="{{ riddle.answer }}" style="text-align:center;text-transform:uppercase">
                         <br/>
-                        <button onclick="goBack()" class="btn btn-outline-dark " type="submit" value="Powrót"> Powrót </button>
-                        <script>
-                        function goBack() {
-                            window.history.back();
-                        }
-                        </script>
+                        <a href="{% url 'levelist' %}"><button onclick="goBack()" class="btn btn-outline-dark " type="submit" value="Powrót"> Powrót </button></a>
+{#                        <script>#}
+{#                        function goBack() {#}
+{#                            window.history.back();#}
+{#                        }#}
+{#                        </script>#}
                     {% else %}
 
                         <div class="d-flex justify-content-center">

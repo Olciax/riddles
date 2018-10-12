@@ -5,9 +5,9 @@
 
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static "riddles/riddles2.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "riddles/riddles.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "riddles/signlogin.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "riddles/animate.css" %}">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -28,23 +28,13 @@
     <title>GuessMe</title>
 </head>
 
-<body id="page-top">
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-    <div class="container">
-        <a class="navbar-brand js-scroll-trigger text-light" href="{% url 'homepage' %}">Logo</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<body>
 
-
-    </div>
-</nav>
 
 <!-- Block content -->
 <div class="main">
     <div class="main2">
-        <div class="logincontent">
+        <div class="content">
             <div class="page-container">
                 <div class="left-side animated fadeInLeftBig">
                     <div class="brand" style="text-align:center">
@@ -54,6 +44,7 @@
 
 
                         <hr>
+
                         <h5><a class="text-secondary" href="{% url 'signup' %}">Nie masz konta?</a></h5>
 
                     </div>
